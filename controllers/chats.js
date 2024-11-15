@@ -1,12 +1,11 @@
-import Chat from "../models/chat.js"
+import Chats from "../models/chats.js";
 
 export async function fetchAllChats(req, res, next) {
     try {
-        const chat = await Chat.find();
-        res.json(chat);
-
+        const chats = await Chats.find();
+        res.json(chats);
     } catch (e) {
         console.error(e);
-
+        
     }
 }
