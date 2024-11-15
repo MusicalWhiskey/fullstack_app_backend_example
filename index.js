@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
+import chatRouter from "./routes/chat.js";
+import chatSchema from "./models/chat.js"
 import { connect } from "./db/connect.js";
 
 const app = express();
@@ -13,13 +15,17 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan("dev"));
 app.use(cors())
 
+// Schemas
+
+
 
 
 //Routes
-app.get('/', async (req, res) => (
-    res.send("Welcome to the backend") 
-))
+app.use('/api/chat', chatRouter)
 
+app.get('/', async (req, res) => (
+    res.send("Welcome to the fullstack_backend") 
+))
 //Error Handler
 app.use((err, req, res, next) => {
     res.status(500).json({error})
